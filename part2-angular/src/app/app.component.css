@@ -1,0 +1,28 @@
+#main {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0;
+    height: 100%;
+    margin: 0;
+}
+
+#input {
+    background-color: white;
+    width: 50%;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#output {
+    background-color: gray;
+    width: 50%;
+    height: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}

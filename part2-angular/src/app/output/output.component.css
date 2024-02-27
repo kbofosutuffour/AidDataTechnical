@@ -1,0 +1,12 @@
+.card {
+    background-color: white;
+    padding: 10px;
+    width: fit-content;
+}
+
+#card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 10px;
+}

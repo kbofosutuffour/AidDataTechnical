@@ -1,0 +1,14 @@
+
+<div id="card-container">
+    @for (card of cards; track card) {
+        @if (card.name) {
+            <div class="card">
+                <h3>{{card.name}}</h3>
+                <h5>{{card.age}}</h5>
+                <h5>{{card.school}}</h5>
+            </div>
+        }
+    }
+</div>
+
+

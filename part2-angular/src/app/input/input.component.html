@@ -1,0 +1,37 @@
+<div [formGroup]="applyForm" (submit)="submitInfo()">
+    
+<form id="form">
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name">
+
+    @if (!validName) {
+        <p class="input-error">Required field: Please enter a name [1-100 character limit]</p>
+    }
+
+    <label for="age">Age</label>
+    <input id="age" type="text" formControlName="age">
+    @if (!validAge) {
+        <p class="input-error">Required field: Please enter an age [1-125 age limit]</p>
+    }
+
+    <label>Are you a student?</label>
+    <div class="studnet-choice">
+        <label for="isStudent">Yes</label><input id="isStudent" type="radio" name="student" (click)="setSchoolStatus(true)">
+    </div>
+    <div class="studnet-choice">
+        <label for="isNotStudent">No</label><input id="isNotStudent" type="radio" name="student" (click)="setSchoolStatus(false)">
+    </div>
+
+    @if (isStudent) {
+    <label for="school">School</label>
+    <input id="school" type="text" formControlName="school">
+    }
+
+    @if (!validSchool) {
+        <p class="input-error">Please enter a valid school value [1-200 character limit]</p>
+    }
+
+    <button type="submit">Submit</button>
+</form>
+
+</div>
