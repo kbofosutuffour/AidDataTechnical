@@ -20,6 +20,7 @@ export class InputComponent {
   applyForm = new FormGroup({
     name: new FormControl(''),
     age: new FormControl(''),
+    date: new FormControl(''),
     school: new FormControl(''),
   });
 
@@ -39,8 +40,30 @@ export class InputComponent {
   validAge: boolean = true;
   validSchool: boolean = true;
 
+  /**
+   * Age selected by the user if they use the drop-down input
+   */
+  age: string = '0';
+
+  currentDate: string = '2024-02-27';
+  date: Date;
+
   constructor(cardService: CardService) {
     this.cardService = cardService;
+    this.date = new Date(); 
+    // this.currentDate = (this.date.getFullYear() + '-' + (this.date.getMonth()+1) + '-' + this.date.getDay()).toString();
+    console.log(this.currentDate, 'test')
+  }
+
+  /**
+   * Calculates the age of the user based on their
+   * selection in the drop-down menu if used
+   * @param inputDate the date the user has selected
+   */
+  getAge(inputDate: any) {
+    let newDate = new Date(inputDate.target.value);
+    this.age = (Math.floor(Math.floor((Date.UTC(this.date.getFullYear(), this.date.getMonth(), this.date.getDate()) - Date.UTC(newDate.getFullYear(), newDate.getMonth()+1, newDate.getDate()) ) /(1000 * 60 * 60 * 24)) / 365)).toString();
+    console.log(this.age)
   }
 
   /**
@@ -51,14 +74,15 @@ export class InputComponent {
   submitInfo() {
     let [name, age, school] = [
       this.applyForm.value.name ?? '',
-      this.applyForm.value.age ?? '',
-      this.applyForm.value.school ?? ''
+      this.age !== '0' ? this.age : this.applyForm.value.age ? this.applyForm.value.age : '',
+      this.applyForm.value.school ?? '',
     ]
     
     this.validateInformation(name, age, school);
     if (this.validAge && this.validName && this.validSchool) {
       this.cardService.submitInfo(name, age, school);
       this.clearForm();
+      this.age = '0';
     }
   }
 
@@ -69,8 +93,14 @@ export class InputComponent {
    */
   validateInformation(name: string, age: string, school: string) {
     this.validName = name.length > 0 && name.length <= 100;
-    this.validAge = Number(age) > 0 && Number(age) <= 125;
     this.validSchool = school.length <= 200;
+
+    /**
+     * Checks whether the user has used a valid age using the 
+     * input OR the drop-down menu
+     */
+    this.validAge = (Number(age) > 0 && Number(age) <= 125) || (Number(this.age) > 0 && Number(this.age) <= 125);
+    console.log((Number(age) > 0 && Number(age) <= 125), (Number(this.age) > 0 && Number(this.age) <= 125))
   }
 
   /**
@@ -94,6 +124,7 @@ export class InputComponent {
     this.applyForm = new FormGroup({
       name: new FormControl(''),
       age: new FormControl(''),
+      date: new FormControl(''),
       school: new FormControl(''),
     });
   }

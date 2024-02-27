@@ -12,8 +12,10 @@ export class CardService {
   private cards$ = new BehaviorSubject<any>({});
   selectedCards$ = this.cards$.asObservable();
 
-  constructor() { }
-
+  /**
+   * Submits the user's input data and triggers a
+   * notification to the output component
+   */
   submitInfo(name: string, age: string, school: string) {
     console.log(`Card received: name: ${name}, age: ${age}, school: ${school}.`);
     this.cards$.next({
@@ -23,8 +25,4 @@ export class CardService {
     })
   }
 
-  getCards(): card[] {
-    console.log(this.cards, 'test')
-    return this.cards;
-  }
 }

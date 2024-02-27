@@ -5,4 +5,35 @@ form {
 
 .input-error {
     color: red;
+    max-width: 200px;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: medium;
+}
+
+input:focus {
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+}
+
+#please-enter {
+    font-size: large;
+}
+
+#student-label {
+    margin-bottom: 10px;
+}
+
+#submit {
+    margin-top: 10px;
+    padding: 5px;
+    font-size: medium;
+    border-radius: 10px;
+    border-width: 0.5px;
 }

@@ -3,9 +3,11 @@
     @for (card of cards; track card) {
         @if (card.name) {
             <div class="card">
-                <h3>{{card.name}}</h3>
-                <h5>{{card.age}}</h5>
-                <h5>{{card.school}}</h5>
+                <h2>{{card.name}}</h2>
+                <h3>Age: {{card.age}}</h3>
+                @if (card.school) {
+                    <h3>School: {{card.school}}</h3>
+                }
             </div>
         }
     }
