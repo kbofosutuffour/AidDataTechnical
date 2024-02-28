@@ -15,15 +15,18 @@
     }
     <input id="date" type="date" formControlName="date" (change)="getAge($event)">
 
-    <label id="student-label">Are you a student?</label>
-    <div class="studnet-choice">
-        <label for="isStudent">Yes</label>
-        <input id="isStudent" type="radio" name="student" (click)="setSchoolStatus(true)">
+    <div id="student-choice-container">
+        <label id="student-label">Are you a student?</label>
+        <div class="studnet-choice">
+            <label id="isStudentLabel" for="isStudent">Yes</label>
+            <input id="isStudent" type="radio" name="student" (click)="setSchoolStatus(true)">
+        </div>
+        <div class="studnet-choice">
+            <label id="isNotStudentLabel" for="isNotStudent">No</label>
+            <input id="isNotStudent" type="radio" name="student" (click)="setSchoolStatus(false)">
+        </div>
     </div>
-    <div class="studnet-choice">
-        <label for="isNotStudent">No</label>
-        <input id="isNotStudent" type="radio" name="student" (click)="setSchoolStatus(false)">
-    </div>
+
 
     @if (isStudent) {
     <!-- <label for="school">School</label> -->
@@ -34,7 +37,7 @@
         <p class="input-error">Please enter a valid school value [1-200 character limit]</p>
     }
 
-    <button type="submit" id="submit">Submit</button>
+    <button type="submit" id="submit">Add</button>
 </form>
 
 </div>

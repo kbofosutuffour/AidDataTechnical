@@ -13,8 +13,10 @@ input {
     border-bottom: 1px solid black;
     padding: 5px;
     margin-bottom: 10px;
-    font-size: medium;
+    font-size: x-large;
 }
+
+
 
 input:focus {
     border: none;
@@ -23,11 +25,27 @@ input:focus {
 }
 
 #please-enter {
-    font-size: large;
+    font-size: x-large;
+    font-weight: bold;
 }
 
 #student-label {
     margin-bottom: 10px;
+    font-size: large;
+    font-style: italic;
+}
+
+#student-choice-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap: 10px;
+}
+
+#isStudentLabel, #isNotStudentLabel {
+    font-size: large;
 }
 
 #submit {
