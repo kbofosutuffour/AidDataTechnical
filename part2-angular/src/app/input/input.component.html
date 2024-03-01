@@ -25,14 +25,16 @@
         <label id="student-label">Are you a student?</label>
         <div class="studnet-choice">
             <label id="isStudentLabel" for="isStudent">Yes</label>
-            <input id="isStudent" type="radio" name="student" (click)="setSchoolStatus(true)">
+            <input id="isStudent" type="radio" formControlName="isStudent" (click)="setSchoolStatus(true)">
         </div>
         <div class="studnet-choice">
             <label id="isNotStudentLabel" for="isNotStudent">No</label>
-            <input id="isNotStudent" type="radio" name="student" (click)="setSchoolStatus(false)">
+            <input id="isNotStudent" type="radio" formControlName="isNotStudent" (click)="setSchoolStatus(false)">
         </div>
     </div>
-
+    @if (!hasStudentStatus) {
+        <p class="input-error">Please select your student status [select only one option] </p>
+    }
 
     @if (isStudent) {
     <!-- <label for="school">School</label> -->

@@ -21,8 +21,9 @@ export class InputComponent {
     name: new FormControl(''),
     age: new FormControl(''),
     ageType: new FormControl('Years'),
-    date: new FormControl(''),
     school: new FormControl(''),
+    isStudent: new FormControl(false),
+    isNotStudent: new FormControl(false),
   });
 
   /**
@@ -32,14 +33,20 @@ export class InputComponent {
   cardService: CardService;
 
   /**
-   * Shows whether or not the user is a student,
-   * the user has submitted a name within 1-100 characters, and
-   * the user has submitted an age within 1-125 years
+   * Information used to see if the user has added the required
+   * data for a user
    */
   isStudent: boolean = false;
   validName: boolean = true;
   validAge: boolean = true;
   validSchool: boolean = true;
+
+  /**
+   * Shows whether or not the user has set their status as a
+   * student, which is a required field
+   */
+  hasStudentStatus: boolean = true;
+
 
   /**
    * Age selected by the user if they use the drop-down input
@@ -79,12 +86,27 @@ export class InputComponent {
       this.applyForm.value.ageType ?? '',
       this.applyForm.value.school ?? '',
     ]
+
+    // User should either be a student or not
+    this.hasStudentStatus = this.applyForm.value.isStudent !== this.applyForm.value.isNotStudent;
     
     this.validateInformation(name, age, ageType, school);
-    if (this.validAge && this.validName && this.validSchool) {
+    if (this.validAge && this.validName && this.validSchool && this.hasStudentStatus) {
       this.cardService.submitInfo(name, age, ageType, school);
       this.clearForm();
       this.age = '0';
+    }
+
+    if (!this.hasStudentStatus) {
+      this.applyForm.setValue({
+        name: name,
+        age: age,
+        ageType: ageType,
+        school: school,
+        isStudent: false,
+        isNotStudent: false,
+      })
+      this.isStudent = false;
     }
   }
 
@@ -127,8 +149,9 @@ export class InputComponent {
       name: new FormControl(''),
       age: new FormControl(''),
       ageType: new FormControl('Years'),
-      date: new FormControl(''),
       school: new FormControl(''),
+      isStudent: new FormControl(false),
+      isNotStudent: new FormControl(false),
     });
   }
 
