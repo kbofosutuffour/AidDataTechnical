@@ -35,7 +35,7 @@ input:focus {
     font-style: italic;
 }
 
-#student-choice-container {
+.row-container {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
@@ -54,4 +54,16 @@ input:focus {
     font-size: medium;
     border-radius: 10px;
     border-width: 0.5px;
+}
+
+#age-type {
+    padding: 10px;
+    font-size: large;
+    border: none;
+    border-radius: 5px;
+}
+
+select {
+    border: none;
+    font-size: large;
 }

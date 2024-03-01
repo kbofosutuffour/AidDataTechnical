@@ -9,13 +9,19 @@
     }
 
     <!-- <label for="age">Age</label> -->
-    <input id="age" type="text" formControlName="age" placeholder="Age" [value]="age != '0' ? age : ''">
+    <div class="row-container">
+        <input id="age" type="text" formControlName="age" placeholder="Age" [value]="age != '0' ? age : ''">
+        <select name="age-type" id="cars" formControlName="ageType">
+            <option class="age-type-option" value="Years">Years</option>
+            <option class="age-type-option" value="Months">Months</option>
+        </select>
+    </div>
+
     @if (!validAge) {
         <p class="input-error">Required field: Please enter an age [1-125 age limit]</p>
     }
-    <input id="date" type="date" formControlName="date" (change)="getAge($event)">
 
-    <div id="student-choice-container">
+    <div class="row-container">
         <label id="student-label">Are you a student?</label>
         <div class="studnet-choice">
             <label id="isStudentLabel" for="isStudent">Yes</label>

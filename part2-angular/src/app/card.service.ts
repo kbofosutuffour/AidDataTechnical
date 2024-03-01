@@ -16,11 +16,12 @@ export class CardService {
    * Submits the user's input data and triggers a
    * notification to the output component
    */
-  submitInfo(name: string, age: string, school: string) {
-    console.log(`Card received: name: ${name}, age: ${age}, school: ${school}.`);
+  submitInfo(name: string, age: string, ageType: string, school: string) {
+    console.log(`Card received: name: ${name}, age: ${age} ${ageType}, school: ${school}.`);
     this.cards$.next({
       name: name,
       age: age,
+      ageType: ageType,
       school: school
     })
   }

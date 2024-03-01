@@ -20,6 +20,7 @@ export class InputComponent {
   applyForm = new FormGroup({
     name: new FormControl(''),
     age: new FormControl(''),
+    ageType: new FormControl('Years'),
     date: new FormControl(''),
     school: new FormControl(''),
   });
@@ -72,15 +73,16 @@ export class InputComponent {
    * via subscription
    */
   submitInfo() {
-    let [name, age, school] = [
+    let [name, age, ageType, school] = [
       this.applyForm.value.name ?? '',
-      this.age !== '0' ? this.age : this.applyForm.value.age ? this.applyForm.value.age : '',
+      this.applyForm.value.age ?? '',
+      this.applyForm.value.ageType ?? '',
       this.applyForm.value.school ?? '',
     ]
     
-    this.validateInformation(name, age, school);
+    this.validateInformation(name, age, ageType, school);
     if (this.validAge && this.validName && this.validSchool) {
-      this.cardService.submitInfo(name, age, school);
+      this.cardService.submitInfo(name, age, ageType, school);
       this.clearForm();
       this.age = '0';
     }
@@ -90,8 +92,9 @@ export class InputComponent {
    * Checks if the user input fits the desired specifications
    * @param name string with 1-100 character limit
    * @param age string with 1-125 age limit
+   * @param ageType shows whether the age is of years of months
    */
-  validateInformation(name: string, age: string, school: string) {
+  validateInformation(name: string, age: string, ageType: string, school: string) {
     this.validName = name.length > 0 && name.length <= 100;
     this.validSchool = school.length <= 200;
 
@@ -100,7 +103,6 @@ export class InputComponent {
      * input OR the drop-down menu
      */
     this.validAge = (Number(age) > 0 && Number(age) <= 125) || (Number(this.age) > 0 && Number(this.age) <= 125);
-    console.log((Number(age) > 0 && Number(age) <= 125), (Number(this.age) > 0 && Number(this.age) <= 125))
   }
 
   /**
@@ -124,6 +126,7 @@ export class InputComponent {
     this.applyForm = new FormGroup({
       name: new FormControl(''),
       age: new FormControl(''),
+      ageType: new FormControl('Years'),
       date: new FormControl(''),
       school: new FormControl(''),
     });
